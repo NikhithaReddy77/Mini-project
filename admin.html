@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <style>
-    /* Basic reset and styling */
     html, body {
       height: 100%;
       margin: 0;
@@ -19,7 +18,6 @@
       font-family: 'Poppins', sans-serif;
       color: #fff;
     }
-    /* Navigation Bar */
     .nav-bar {
       background: #2c2f33;
     }
@@ -30,7 +28,6 @@
     .nav-link:hover {
       color: #7289da;
     }
-    /* Main Content */
     .main {
       flex: 1;
       padding: 40px 0;
@@ -39,7 +36,6 @@
       margin: 0 auto 40px;
       max-width: 800px;
     }
-    /* Card for report options */
     .card {
       border: none;
       border-radius: 10px;
@@ -62,11 +58,9 @@
       text-align: right;
       padding: 10px;
     }
-    /* Labels in black */
     label, .form-check-label {
       color: #000 !important;
     }
-    /* Report Preview */
     #preview {
       display: none;
       animation: fadeIn 0.5s ease;
@@ -76,7 +70,6 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    /* Footer */
     .footer {
       background: #2c2f33;
       color: #fff;
@@ -96,7 +89,6 @@
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
   <nav class="nav-bar navbar navbar-expand-lg">
     <a class="nav-brand navbar-brand" href="#"><i class="fas fa-cogs"></i> Admin Dashboard</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
@@ -184,9 +176,7 @@
       </p>
     </div>
   </footer>
-  
-  <!-- JS Libraries -->
-  <script>
+    <script>
     function showPreview() {
       const form = document.getElementById('reportForm');
       const data = new FormData(form);
@@ -214,10 +204,9 @@
       alert('Export as PDF functionality coming soon!');
     }
     
-    // Logout functionality: redirect to login.html when logout is clicked
     document.getElementById("logoutBtn").addEventListener("click", function(e) {
       e.preventDefault();
-      window.location.href = "login.html";
+      window.location.href = "admin.html";
     });
   </script>
 </body>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard - Report Options</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    /* Basic reset and styling */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      background: #1c1d22;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+    /* Navigation Bar */
+    .nav-bar {
+      background: #2c2f33;
+    }
+    .nav-brand, .nav-link {
+      color: #fff !important;
+      font-size: 1.2rem;
+    }
+    .nav-link:hover {
+      color: #7289da;
+    }
+    /* Main Content */
+    .main {
+      flex: 1;
+      padding: 40px 0;
+    }
+    .box {
+      margin: 0 auto 40px;
+      max-width: 800px;
+    }
+    /* Card for report options */
+    .card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .card-head {
+      background: #7289da;
+      color: #fff;
+      font-size: 1.25rem;
+      text-align: center;
+      padding: 10px;
+    }
+    .card-body {
+      padding: 20px;
+      color: #000;
+    }
+    .card-foot {
+      background: #f8f9fa;
+      text-align: right;
+      padding: 10px;
+    }
+    /* Labels in black */
+    label, .form-check-label {
+      color: #000 !important;
+    }
+    /* Report Preview */
+    #preview {
+      display: none;
+      animation: fadeIn 0.5s ease;
+      margin-top: 20px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Footer */
+    .footer {
+      background: #2c2f33;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.3);
+    }
+    .footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    .footer a:hover {
+      color: #7289da;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="nav-bar navbar navbar-expand-lg">
+    <a class="nav-brand navbar-brand" href="#"><i class="fas fa-cogs"></i> Admin Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
+      <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color:#fff;"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="admin.html"><i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#aboutme"><i class="fas fa-info-circle"></i> About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+        <li class="nav-item"><a class="nav-link" href="#support"><i class="fas fa-life-ring"></i> Support</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <div class="main">
+    <div class="box">
+      <h1 class="text-center text-white mb-4"><i class="fas fa-chart-line"></i> Generate Reports</h1>
+      <div class="card">
+        <div class="card-head">Report Options</div>
+        <div class="card-body">
+          <form id="reportForm">
+            <!-- Report Options -->
+            <div class="form-group">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="studentReport" name="reportOptions" value="Student-wise Report">
+                <label class="form-check-label" for="studentReport">Student-wise Report</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="monthlyReport" name="reportOptions" value="Monthly Report">
+                <label class="form-check-label" for="monthlyReport">Monthly Report</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="weeklyReport" name="reportOptions" value="Weekly Report">
+                <label class="form-check-label" for="weeklyReport">Weekly Report</label>
+              </div>
+              <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="mealReport" name="reportOptions" value="Meal-wise Report">
+                <label class="form-check-label" for="mealReport">Meal-wise Report</label>
+              </div>
+            </div>
+            <!-- Optional Comments -->
+            <div class="form-group">
+              <label for="comments">Comments/Notes (optional)</label>
+              <textarea class="form-control" id="comments" name="comments" rows="3" placeholder="Enter any notes regarding the reports"></textarea>
+            </div>
+            <!-- Review Button -->
+            <button type="button" class="btn btn-primary btn-block" onclick="showPreview()">
+              Review Report <i class="fas fa-eye"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Report Preview Section -->
+      <div id="preview">
+        <div class="card">
+          <div class="card-head">Report Preview</div>
+          <div class="card-body" id="previewContent">
+            <!-- Dynamically generated preview content -->
+          </div>
+          <div class="card-foot">
+            <button type="button" class="btn btn-secondary mr-2" onclick="hidePreview()">Edit</button>
+            <button type="button" class="btn btn-success mr-2" onclick="exportExcel()">
+              <i class="fas fa-file-excel"></i> Export as Excel
+            </button>
+            <button type="button" class="btn btn-danger" onclick="exportPDF()">
+              <i class="fas fa-file-pdf"></i> Export as PDF
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Mess Menu Formation System. All rights reserved.
+        | <a href="#Privacy">Privacy</a>
+        | <a href="#Terms">Terms</a>
+      </p>
+    </div>
+  </footer>
+  
+  <!-- JS Libraries -->
+  <script>
+    function showPreview() {
+      const form = document.getElementById('reportForm');
+      const data = new FormData(form);
+      const options = data.getAll("reportOptions");
+      const optionsText = options.length ? options.join(', ') : "None";
+      const comments = data.get("comments") ? data.get("comments").trim() : "None";
+      let html = '<ul class="list-group">';
+      html += '<li class="list-group-item"><strong>Report Options:</strong> ' + optionsText + '</li>';
+      html += '<li class="list-group-item"><strong>Comments:</strong> ' + (comments === "" ? "None" : comments) + '</li>';
+      html += '</ul>';
+      document.getElementById('previewContent').innerHTML = html;
+      document.getElementById('preview').style.display = 'block';
+      window.scrollTo({ top: document.getElementById('preview').offsetTop, behavior: 'smooth' });
+    }
+    
+    function hidePreview() {
+      document.getElementById('preview').style.display = 'none';
+    }
+    
+    function exportExcel() {
+      alert('Export as Excel functionality coming soon!');
+    }
+    
+    function exportPDF() {
+      alert('Export as PDF functionality coming soon!');
+    }
+    
+    // Logout functionality: redirect to login.html when logout is clicked
+    document.getElementById("logoutBtn").addEventListener("click", function(e) {
+      e.preventDefault();
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>

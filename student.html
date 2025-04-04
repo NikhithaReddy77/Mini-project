@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mess Menu Formation System</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body with background image */
+    body {
+      background: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+
+    /* Navigation Menu */
+    .menu {
+      background: rgba(44, 47, 51, 0.9);
+      padding: 10px 0;
+      list-style: none;
+      text-align: center;
+    }
+    .menu li {
+      display: inline-block;
+      margin: 0 15px;
+      height: 50px;
+      line-height: 50px;
+    }
+    .menu li a {
+      color: #fff;
+      font-size: 22px;
+      text-decoration: none;
+    }
+    .menu li a:hover {
+      color: #7289da;
+    }
+
+    /* Main Container */
+    .main {
+      padding: 20px;
+    }
+
+    /* Form Box */
+    .form-box {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 40px;
+      margin: 30px auto;
+      max-width: 600px;
+      color: #000;
+    }
+
+    /* Progress Bar */
+    .progress {
+      height: 8px;
+      background-color: #444;
+      border-radius: 4px;
+      margin-bottom: 30px;
+    }
+    .progress-bar {
+      background-color: #7289da;
+      width: 33.33%;
+      height: 100%;
+    }
+
+    /* Form Groups */
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-control {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .error-msg {
+      color: #f04747;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background-color: #7289da;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background-color: #5a6bbf;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+      color: #fff;
+    }
+    .btn-secondary:hover {
+      background-color: #565e64;
+    }
+    .center {
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background-color: rgba(35, 39, 42, 0.9);
+      color: #fff;
+      padding: 15px 0;
+      text-align: center;
+    }
+    footer p {
+      margin: 0;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    footer a:hover {
+      color: #7289da;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Menu -->
+  <nav>
+    <ul class="menu">
+      <li><a href="student.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="#services"><i class="fas fa-concierge-bell"></i> Services</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li><a href="login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="main">
+    <div class="form-box">
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+      <form id="myForm" novalidate>
+        <!-- Step 1: Student & Mess Details -->
+        <div class="step" id="step-1">
+          <h2><i class="fas fa-user-graduate"></i> Student & Mess Details</h2>
+          <div class="form-group">
+            <label for="regNo">Registration Number</label>
+            <input type="text" class="form-control" id="regNo" name="regNo" placeholder="Enter Reg No" required maxlength="30" pattern="[a-zA-Z]+">
+            <div class="error-msg" id="err-regNo"></div>
+          </div>
+          <div class="form-group">
+            <label for="stuName">Student Name</label>
+            <input type="text" class="form-control" id="stuName" name="stuName" placeholder="Enter Name" required>
+            <div class="error-msg" id="err-stuName"></div>
+          </div>
+          <div class="form-group">
+            <label for="roomNo">Block & Room Number</label>
+            <input type="text" class="form-control" id="roomNo" name="roomNo" placeholder="Ex: Block A, Room 101" required>
+            <div class="error-msg" id="err-roomNo"></div>
+          </div>
+          <div class="form-group">
+            <label for="diningName">Name of Dining Mess</label>
+            <select class="form-control" id="diningName" name="diningName" required>
+              <option value="">-- Select --</option>
+              <option value="MAX">A</option>
+              <option value="ZEN">B</option>
+              <option value="RPL">C</option>
+              <option value="SKC">D</option>
+              <option value="GRC">E</option>
+              <option value="SRRC">F</option>
+              <option value="RRC">G</option>
+              <option value="FFPL">H</option>
+              <option value="PR">I</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="messType">Type of Mess</label>
+            <select class="form-control" id="messType" name="messType" required>
+              <option value="">-- Select --</option>
+              <option value="Veg">Veg</option>
+              <option value="Non-Veg">Non-Veg</option>
+              <option value="Special">Special</option>
+              <option value="Night Mess">Night Mess</option>
+            </select>
+            <div class="error-msg" id="err-messType"></div>
+          </div>
+        </div>
+
+        <!-- Step 2: Menu Details -->
+        <div class="step" id="step-2">
+          <h2><i class="fas fa-utensils"></i> Menu Details</h2>
+          <div class="form-group">
+            <label for="foodItem">Food Item Suggestion</label>
+            <textarea class="form-control" id="foodItem" name="foodItem" rows="3" placeholder="Enter your suggestion" required></textarea>
+            <div class="error-msg" id="err-foodItem"></div>
+          </div>
+          <div class="form-group">
+            <label for="meal">Type of Meal</label>
+            <select class="form-control" id="meal" name="meal" required>
+              <option value="">-- Select --</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Snacks">Snacks</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Night Mess">Night Mess</option>
+            </select>
+            <div class="error-msg" id="err-meal"></div>
+          </div>
+          <div class="form-group">
+            <label>Feasibility for Mass Production</label>
+            <div>
+              <label style="margin-right: 10px;">
+                <input type="radio" name="feasible" id="yes" value="Yes" required> Yes
+              </label>
+              <label>
+                <input type="radio" name="feasible" id="no" value="No"> No
+              </label>
+            </div>
+            <div class="error-msg" id="err-feasible"></div>
+          </div>
+        </div>
+
+        <!-- Step 3: Additional Comments & Submit -->
+        <div class="step" id="step-3">
+          <h2><i class="fas fa-comments"></i> Additional Comments</h2>
+          <div class="form-group">
+            <label for="comments">Comments or Special Requests</label>
+            <textarea class="form-control" id="comments" name="comments" rows="4" placeholder="Enter any additional comments" required></textarea>
+            <div class="error-msg" id="err-comments"></div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="center">
+          <button type="submit" class="btn btn-primary">Submit <i class="fas fa-paper-plane"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      <a href="Privacy">Privacy</a> | 
+      <a href="Terms">Terms</a> | 
+      <a href="Support">Support</a> | 
+      <a href="Feedback">Feedback</a>
+    </p>
+  </footer>
+</body>
+</html>
